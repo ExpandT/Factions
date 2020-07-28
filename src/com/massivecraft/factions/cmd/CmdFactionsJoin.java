@@ -1,0 +1,136 @@
+package com.massivecraft.factions.cmd;
+
+import com.massivecraft.factions.Factions;
+import com.massivecraft.factions.Perm;
+import com.massivecraft.factions.cmd.type.TypeFaction;
+import com.massivecraft.factions.cmd.type.TypeMPlayer;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.MConf;
+import com.massivecraft.factions.entity.MFlag;
+import com.massivecraft.factions.entity.MPlayer;
+import com.massivecraft.factions.event.EventFactionsMembershipChange;
+import com.massivecraft.factions.event.EventFactionsMembershipChange.MembershipChangeReason;
+import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.mson.Mson;
+import com.massivecraft.massivecore.util.Txt;
+import org.bukkit.ChatColor;
+
+public class CmdFactionsJoin extends FactionsCommand
+{
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	public CmdFactionsJoin()
+	{
+		// Parameters
+		this.addParameter(TypeFaction.get(), "faction");
+		this.addParameter(TypeMPlayer.get(), "player", "you");
+	}
+
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
+	@Override
+	public void perform() throws MassiveException
+	{
+		// Args
+		Faction faction = this.readArg();		
+
+		MPlayer mplayer = this.readArg(msender);
+		Faction mplayerFaction = mplayer.getFaction();
+		
+		boolean samePlayer = mplayer == msender;
+		
+		// Validate
+		if (!samePlayer  && ! Perm.JOIN_OTHERS.has(sender, false))
+		{
+			msg("<b>У вас нет разрешения перемещать других игроков во фракции.");
+			return;
+		}
+
+		if (faction == mplayerFaction)
+		{
+			String command = CmdFactions.get().cmdFactionsKick.getCommandLine(mplayer.getName());
+			
+			// Mson creation
+			Mson alreadyMember = Mson.mson(
+				Mson.parse(mplayer.describeTo(msender, true)),
+				mson((samePlayer ? " are" : " is") + " уже член " + faction.getName(msender) + ".").color(ChatColor.YELLOW)
+			);
+			
+			message(alreadyMember.suggest(command).tooltip(Txt.parse("<i>Нажмите для <c>%s<i>.", command)));
+			return;
+		}
+
+		if (MConf.get().factionMemberLimit > 0 && faction.getMPlayers().size() >= MConf.get().factionMemberLimit)
+		{
+			msg(" <b>!<white> Фракция %s находится на пределе %d члены, так %s не может в настоящее время присоединиться.", faction.getName(msender), MConf.get().factionMemberLimit, mplayer.describeTo(msender, false));
+			return;
+		}
+
+		if (mplayerFaction.isNormal())
+		{
+			String command = CmdFactions.get().cmdFactionsLeave.getCommandLine(mplayer.getName());
+			
+			// Mson creation
+			Mson leaveFirst = Mson.mson(
+				Mson.parse(mplayer.describeTo(msender, true)),
+				mson(" должен покинуть " + (samePlayer ? "ваш" : "их") + " текущая фракция первая.").color(ChatColor.RED)
+			);
+			
+			message(leaveFirst.suggest(command).tooltip(Txt.parse("<i>Нажмите для <c>%s<i>.", command)));
+			return;
+		}
+
+		if (!MConf.get().canLeaveWithNegativePower && mplayer.getPower() < 0)
+		{
+			msg("<b>%s не может присоединиться к фракции с отрицательным уровнем силы.", mplayer.describeTo(msender, true));
+			return;
+		}
+
+		if( ! (faction.getFlag(MFlag.getFlagOpen()) || faction.isInvited(mplayer) || msender.isOverriding()))
+		{
+			msg("<i>Эта фракция требует приглашения.");
+			if (samePlayer)
+			{
+				faction.msg("%s<i> пытался присоединиться к вашей фракции.", mplayer.describeTo(faction, true));
+			}
+			return;
+		}
+
+		// Event
+		EventFactionsMembershipChange membershipChangeEvent = new EventFactionsMembershipChange(sender, msender, faction, MembershipChangeReason.JOIN);
+		membershipChangeEvent.run();
+		if (membershipChangeEvent.isCancelled()) return;
+		
+		// Inform
+		if (!samePlayer)
+		{
+			mplayer.msg("<i>%s <i>переместил вас во фракцию %s<i>.", msender.describeTo(mplayer, true), faction.getName(mplayer));
+		}
+		faction.msg("<i>%s <i>присоединился к <lime>вашей фракции<i>.", mplayer.describeTo(faction, true));
+		msender.msg("<i>%s <i>успешно присоединился %s<i>.", mplayer.describeTo(msender, true), faction.getName(msender));
+		
+		// Apply
+		mplayer.resetFactionData();
+		mplayer.setFaction(faction);
+		
+		faction.uninvite(mplayer);
+
+		// Derplog
+		if (MConf.get().logFactionJoin)
+		{
+			if (samePlayer)
+			{
+				Factions.get().log(Txt.parse("%s вступил во фракцию %s.", mplayer.getName(), faction.getName()));
+			}
+			else
+			{
+				Factions.get().log(Txt.parse("%s перешел игрок %s во фракцию %s.", msender.getName(), mplayer.getName(), faction.getName()));
+			}
+		}
+	}
+	
+}

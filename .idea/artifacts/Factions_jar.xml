@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Factions:jar">
+    <output-path>$USER_HOME$/Desktop/clanwar/plugins</output-path>
+    <root id="archive" name="Factions.jar">
+      <element id="module-output" name="Factions" />
+    </root>
+  </artifact>
+</component>
