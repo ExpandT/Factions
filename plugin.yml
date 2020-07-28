@@ -1,7 +1,8 @@
-main: com.massivecraft.factions.Factions
-name: Factions
-version: 2.14.0
-description: ХУЙ ПИЗДА ЗАЛУПА ГЫ ГЫ ГЫ ГЫ ГЫ ГЫ
+main: ${project.groupId}.${project.name}
+name: ${project.name}
+version: ${project.version}
+website: ${project.url}
+description: ${project.description}
 authors: [Cayorion, Madus, Ulumulu1510, MarkehMe, Brettflan]
 depend: [MassiveCore]
 softdepend: [PermissionsEx, Permissions, Essentials, EssentialsChat, HeroChat, iChat, LocalAreaChat, LWC, nChat, ChatManager, AuthMe, Vault, Spout, WorldEdit, WorldGuard, AuthDB, CaptureThePoints, CombatTag]
