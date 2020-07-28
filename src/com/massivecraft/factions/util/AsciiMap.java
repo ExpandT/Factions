@@ -43,7 +43,7 @@ public class AsciiMap
 	private static final Mson KEY_MIDDLE = mson("+").color(ChatColor.AQUA);
 	private static final Mson KEY_WILDERNESS = mson("-").color(ChatColor.GRAY).tooltip();
 	private static final Mson KEY_OVERFLOW = mson("-").style(ChatColor.MAGIC).add(mson("").style(ChatColor.RESET));
-	private static final Mson OVERFLOW_MESSAGE = Mson.format("%s: Too Many Factions (>%d) on this Map.", KEY_OVERFLOW.toPlain(true), FACTION_KEY_CHARS.length);
+	private static final Mson OVERFLOW_MESSAGE = Mson.format("%s: Слишком много фракций (>%d) на этой карте.", KEY_OVERFLOW.toPlain(true), FACTION_KEY_CHARS.length);
 	private static final Mson LEGEND_SEPARATOR = mson(": ");
 	
 	// -------------------------------------------- //

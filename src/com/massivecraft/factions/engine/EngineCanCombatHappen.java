@@ -128,7 +128,7 @@ public class EngineCanCombatHappen extends Engine
 				if (!ret && notify)
 				{
 					MPlayer attacker = MPlayer.get(eattacker);
-					attacker.msg("<i>PVP is disabled in %s.", defenderPsFaction.describeTo(attacker));
+					attacker.msg("<i>PVP отключен в %s.", defenderPsFaction.describeTo(attacker));
 				}
 				return ret;
 			}
@@ -153,7 +153,7 @@ public class EngineCanCombatHappen extends Engine
 		if (attackerPsFaction.getFlag(MFlag.getFlagPvp()) == false)
 		{
 			ret = falseUnlessDisallowedPvpEventCancelled(attacker, defender, DisallowCause.PEACEFUL_LAND, event);
-			if (!ret && notify) uattacker.msg("<i>PVP is disabled in %s.", attackerPsFaction.describeTo(uattacker));
+			if (!ret && notify) uattacker.msg("<i>PVP отключен в %s.", attackerPsFaction.describeTo(uattacker));
 			return ret;
 		}
 
@@ -166,7 +166,7 @@ public class EngineCanCombatHappen extends Engine
 		if (attackFaction.isNone() && MConf.get().disablePVPForFactionlessPlayers)
 		{
 			ret = falseUnlessDisallowedPvpEventCancelled(attacker, defender, DisallowCause.FACTIONLESS, event);
-			if (!ret && notify) uattacker.msg("<i>You can't hurt other players until you join a faction.");
+			if (!ret && notify) uattacker.msg("<i>Вы не можете ударять других игроков, пока не присоединитесь к фракции.");
 			return ret;
 		}
 		else if (defendFaction.isNone())
@@ -179,7 +179,7 @@ public class EngineCanCombatHappen extends Engine
 			else if (MConf.get().disablePVPForFactionlessPlayers)
 			{
 				ret = falseUnlessDisallowedPvpEventCancelled(attacker, defender, DisallowCause.FACTIONLESS, event);
-				if (!ret && notify) uattacker.msg("<i>You can't hurt players who are not currently in a faction.");
+				if (!ret && notify) uattacker.msg("<i>Вы не можете ударять игроков, которые в данный момент не входят в состав фракции..");
 				return ret;
 			}
 			else if (attackFaction.isNone() && MConf.get().enablePVPBetweenFactionlessPlayers)
@@ -195,7 +195,7 @@ public class EngineCanCombatHappen extends Engine
 		if (relation.isFriend() && defenderPsFaction.getFlag(MFlag.getFlagFriendlyire()) == false)
 		{
 			ret = falseUnlessDisallowedPvpEventCancelled(attacker, defender, DisallowCause.FRIENDLYFIRE, event);
-			if (!ret && notify) uattacker.msg("<i>You can't hurt %s<i>.", relation.getDescPlayerMany());
+			if (!ret && notify) uattacker.msg("<i>Ты не можешь ударить %s<i>.", relation.getDescPlayerMany());
 			return ret;
 		}
 
@@ -207,8 +207,8 @@ public class EngineCanCombatHappen extends Engine
 			ret = falseUnlessDisallowedPvpEventCancelled(attacker, defender, DisallowCause.OWN_TERRITORY, event);
 			if (!ret && notify)
 			{
-				uattacker.msg("<i>You can't hurt %s<i> in their own territory unless you declare them as an enemy.", mdefender.describeTo(uattacker));
-				mdefender.msg("%s<i> tried to hurt you.", uattacker.describeTo(mdefender, true));
+				uattacker.msg("<i>Ты не можешь ударить %s<i> на своей территории, если вы не объявите их врагом.", mdefender.describeTo(uattacker));
+				mdefender.msg("%s<i> пытался ударить себя.", uattacker.describeTo(mdefender, true));
 			}
 			return ret;
 		}

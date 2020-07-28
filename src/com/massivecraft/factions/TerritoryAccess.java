@@ -124,7 +124,7 @@ public class TerritoryAccess
 	
 	private TerritoryAccess(String hostFactionId, Boolean hostFactionAllowed, Collection<String> factionIds, Collection<String> playerIds)
 	{
-		if (hostFactionId == null) throw new IllegalArgumentException("hostFactionId was null");
+		if (hostFactionId == null) throw new IllegalArgumentException("hostFactionId был нулевым");
 		this.hostFactionId = hostFactionId;
 		
 		Set<String> factionIdsInner = new MassiveSet<>();

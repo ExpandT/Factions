@@ -68,7 +68,7 @@ public class FactionColl extends Coll<Faction>
 		faction = this.create(id);
 		
 		faction.setName(Factions.NAME_NONE_DEFAULT);
-		faction.setDescription("It's dangerous to go alone.");
+		faction.setDescription("Идти одному опасно");
 		
 		faction.setFlag(MFlag.getFlagOpen(), false);
 		faction.setFlag(MFlag.getFlagPermanent(), true);
@@ -104,7 +104,7 @@ public class FactionColl extends Coll<Faction>
 		faction = this.create(id);
 		
 		faction.setName(Factions.NAME_SAFEZONE_DEFAULT);
-		faction.setDescription("Free from PVP and monsters");
+		faction.setDescription("Территория от PVP и монстров");
 		
 		faction.setFlag(MFlag.getFlagOpen(), false);
 		faction.setFlag(MFlag.getFlagPermanent(), true);
@@ -139,7 +139,7 @@ public class FactionColl extends Coll<Faction>
 		faction = this.create(id);
 		
 		faction.setName(Factions.NAME_WARZONE_DEFAULT);
-		faction.setDescription("Not the safest place to be");
+		faction.setDescription("Враждебная территория");
 		
 		faction.setFlag(MFlag.getFlagOpen(), false);
 		faction.setFlag(MFlag.getFlagPermanent(), true);
@@ -199,7 +199,7 @@ public class FactionColl extends Coll<Faction>
 			double reward = econLandReward * landCount / playerCount;
 			
 			// ... and grant the reward.
-			String description = String.format("own %s faction land divided among %s members", landCount, playerCount);
+			String description = String.format("own %s земля фракции поделена между %s члены", landCount, playerCount);
 			for (MPlayer player : players)
 			{
 				Econ.modifyMoney(player, reward, description);

@@ -72,7 +72,7 @@ public class TypeFaction extends TypeAbstract<Faction>
 			return mplayer.getFaction();
 		}
 		
-		throw new MassiveException().addMsg("<b>No faction or player matching \"<p>%s<b>\".", str);
+		throw new MassiveException().addMsg("<b>Нет подходящей фракции или игрока \"<p>%s<b>\".", str);
 	}
 
 	@Override

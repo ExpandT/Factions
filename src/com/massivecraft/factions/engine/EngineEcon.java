@@ -89,8 +89,8 @@ public class EngineEcon extends Engine
 		
 		Econ.transferMoney(faction, mplayer, mplayer, amount, true);
 		
-		mplayer.msg("<i>You have been given the disbanded faction's bank, totaling %s.", amountString);
-		Factions.get().log(mplayer.getName() + " has been given bank holdings of "+amountString+" from disbanding "+faction.getName()+".");
+		mplayer.msg("<i>Вы получили банк расформированной фракции на общую сумму %s.", amountString);
+		Factions.get().log(mplayer.getName() + " были предоставлены банковские запасы "+amountString+" от расформирования "+faction.getName()+".");
 	}
 	
 	// -------------------------------------------- //
@@ -135,7 +135,7 @@ public class EngineEcon extends Engine
 			typeNames.add(type.now);
 		}
 		
-		String desc = Txt.implodeCommaAnd(typeNames) + " this land";
+		String desc = Txt.implodeCommaAnd(typeNames) + " эта земля";
 		payForAction(event, cost, desc);
 	}
 	
@@ -148,17 +148,17 @@ public class EngineEcon extends Engine
 		if (event.getReason() == MembershipChangeReason.JOIN)
 		{
 			cost = MConf.get().econCostJoin;
-			desc = "join a faction";
+			desc = "вступить во фракцию";
 		}
 		else if (event.getReason() == MembershipChangeReason.LEAVE)
 		{
 			cost = MConf.get().econCostLeave;
-			desc = "leave a faction";
+			desc = "покинуть фракцию";
 		}
 		else if (event.getReason() == MembershipChangeReason.KICK)
 		{
 			cost = MConf.get().econCostKick;
-			desc = "kick someone from a faction";
+			desc = "кикнуть кого-нибудь из фракции";
 		}
 		else
 		{

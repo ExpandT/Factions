@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="LWC">
+    <CLASSES>
+      <root url="jar://F:/IdeaLibs/1.12.2/LWC.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/MassiveCore.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/worldedit-bukkit-6.1.9.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/Vault.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/patched_1.12.2.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/worldguard-bukkit-6.2.2.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/Factions.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/Herochat.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/ProtocolLib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://F:/IdeaLibs/1.12.2/MassiveCore.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/patched_1.12.2.jar!/" />
+      <root url="jar://F:/IdeaLibs/1.12.2/Factions.jar!/" />
+    </SOURCES>
+  </library>
+</component>

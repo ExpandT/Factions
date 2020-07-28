@@ -49,7 +49,7 @@ public class EngineCleanInactivity extends Engine
 		if (bonus == null) return;
 		
 		// Apply
-		event.getToleranceCauseMillis().put("Player Age Bonus", bonus);
+		event.getToleranceCauseMillis().put("Бонус за возраст игрока", bonus);
 	}
 	
 	public void applyFactionAgeBonus(EventMassiveCorePlayerCleanInactivityToleranceMillis event)
@@ -67,7 +67,7 @@ public class EngineCleanInactivity extends Engine
 		if (bonus == null) return;
 		
 		// Apply
-		event.getToleranceCauseMillis().put("Faction Age Bonus", bonus);
+		event.getToleranceCauseMillis().put("Бонус за возраст фракции", bonus);
 	}
 	
 	private Long calculateBonus(long age, Map<Long, Long> ageToBonus)

@@ -46,7 +46,7 @@ public enum AccessStatus implements Colorized
 	{
 		ChatColor color = this.getColor();
 		String status = Txt.getNicedEnum(this).toLowerCase();
-		return Txt.parse("%sYou have %s access to this area.", color.toString(), status);
+		return Txt.parse("%sУ тебя есть %s доступ к этой области.", color.toString(), status);
 	}
 	
 }

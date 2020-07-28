@@ -110,18 +110,18 @@ public class EngineShow extends Engine
 				String flagDesc = Txt.parse(value ? "<g>" : "<b>") + mflag.getName();
 				flagDescs.add(flagDesc);
 			}
-			String flagsDesc = Txt.parse("<silver><italic>default");
+			String flagsDesc = Txt.parse("<silver><italic>стандартный");
 			if ( ! flagDescs.isEmpty())
 			{
 				flagsDesc = Txt.implode(flagDescs, Txt.parse(" <i>| "));
 			}
-			show(idPriorityLiness, SHOW_ID_FACTION_FLAGS, SHOW_PRIORITY_FACTION_FLAGS, "Flags", flagsDesc);
+			show(idPriorityLiness, SHOW_ID_FACTION_FLAGS, SHOW_PRIORITY_FACTION_FLAGS, "Флаги", flagsDesc);
 
 			// POWER
 			double powerBoost = faction.getPowerBoost();
-			String boost = (powerBoost == 0.0) ? "" : (powerBoost > 0.0 ? " (bonus: " : " (penalty: ") + powerBoost + ")";
+			String boost = (powerBoost == 0.0) ? "" : (powerBoost > 0.0 ? " (бонус: " : " (штраф: ") + powerBoost + ")";
 			String powerDesc = Txt.parse("%d/%d/%d%s", faction.getLandCount(), faction.getPowerRounded(), faction.getPowerMaxRounded(), boost);
-			show(idPriorityLiness, SHOW_ID_FACTION_POWER, SHOW_PRIORITY_FACTION_POWER, "Land / Power / Maxpower", powerDesc);
+			show(idPriorityLiness, SHOW_ID_FACTION_POWER, SHOW_PRIORITY_FACTION_POWER, "Территория / Сила / Макс.сила", powerDesc);
 
 			// SECTION: ECON
 			if (Econ.isEnabled())
@@ -136,14 +136,14 @@ public class EngineShow extends Engine
 					if (money == 0) continue;
 					money *= landCount;
 
-					String word = "Cost";
+					String word = "Стоимость";
 					if (money <= 0)
 					{
-						word = "Reward";
+						word = "Вознаграждение";
 						money *= -1;
 					}
 
-					String key = Txt.parse("Total Land %s %s", type.toString().toLowerCase(), word);
+					String key = Txt.parse("Всего территории %s %s", type.toString().toLowerCase(), word);
 					String value = Txt.parse("<h>%s", Money.format(money));
 					String line = show(key, value);
 					landvalueLines.add(line);
@@ -155,7 +155,7 @@ public class EngineShow extends Engine
 				{
 					double bank = Money.get(faction);
 					String bankDesc = Txt.parse("<h>%s", Money.format(bank, true));
-					show(idPriorityLiness, SHOW_ID_FACTION_BANK, SHOW_PRIORITY_FACTION_BANK, "Bank", bankDesc);
+					show(idPriorityLiness, SHOW_ID_FACTION_BANK, SHOW_PRIORITY_FACTION_BANK, "Банк", bankDesc);
 				}
 			}
 		}
@@ -181,7 +181,7 @@ public class EngineShow extends Engine
 			}
 		}
 
-		String headerOnline = Txt.parse("<a>Followers Online (%s):", followerNamesOnline.size());
+		String headerOnline = Txt.parse("<a>Онлайн игроков (%s):", followerNamesOnline.size());
 		followerLines.add(headerOnline);
 		if (followerNamesOnline.isEmpty())
 		{
@@ -194,7 +194,7 @@ public class EngineShow extends Engine
 
 		if (normal)
 		{
-			String headerOffline = Txt.parse("<a>Followers Offline (%s):", followerNamesOffline.size());
+			String headerOffline = Txt.parse("<a>Оффлайн игроков (%s):", followerNamesOffline.size());
 			followerLines.add(headerOffline);
 			if (followerNamesOffline.isEmpty())
 			{

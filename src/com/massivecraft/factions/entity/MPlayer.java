@@ -42,7 +42,7 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 	// META
 	// -------------------------------------------- //
 	
-	public static final transient String NOTITLE = Txt.parse("<em><silver>no title set");
+	public static final transient String NOTITLE = Txt.parse("<em><silver>без названия");
 	
 	// -------------------------------------------- //
 	// META
@@ -725,13 +725,13 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 		{
 			if (!permanent && this.getRole() == Rel.LEADER)
 			{
-				msg("<b>You must give the leader role to someone else first.");
+				msg("<b>Вы должны сначала отдать роль лидера кому-то другому.");
 				return;
 			}
 
 			if (!MConf.get().canLeaveWithNegativePower && this.getPower() < 0)
 			{
-				msg("<b>You cannot leave until your power is positive.");
+				msg("<b>Вы не можете уйти, пока ваша сила не станет положительной.");
 				return;
 			}
 		}
@@ -745,12 +745,12 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 		{
 			for (MPlayer mplayer : myFaction.getMPlayersWhereOnline(true))
 			{
-				mplayer.msg("%s<i> left %s<i>.", this.describeTo(mplayer, true), myFaction.describeTo(mplayer));
+				mplayer.msg("%s<i> вышел из фракции %s<i>.", this.describeTo(mplayer, true), myFaction.describeTo(mplayer));
 			}
 
 			if (MConf.get().logFactionLeave)
 			{
-				Factions.get().log(this.getName() + " left the faction: " + myFaction.getName());
+				Factions.get().log(this.getName() + " покинул фракцию: " + myFaction.getName());
 			}
 		}
 
@@ -763,10 +763,10 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 			if (!eventFactionsDisband.isCancelled())
 			{
 				// Remove this faction
-				this.msg("%s <i>was disbanded since you were the last player.", myFaction.describeTo(this, true));
+				this.msg("%s <i>был расформирован, так как вы были последним игроком.", myFaction.describeTo(this, true));
 				if (MConf.get().logFactionDisband)
 				{
-					Factions.get().log("The faction " + myFaction.getName() + " (" + myFaction.getId() + ") was disbanded due to the last player (" + this.getName() + ") leaving.");
+					Factions.get().log("Фракция " + myFaction.getName() + " (" + myFaction.getId() + ") был расформирован из-за последнего игрока (" + this.getName() + ") вышедшего.");
 				}
 				myFaction.detach();
 			}
@@ -782,8 +782,8 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 	public boolean tryClaim(Faction newFaction, Collection<PS> pss, String formatOne, String formatMany)
 	{
 		// Args
-		if (formatOne == null) formatOne = "<h>%s<i> %s <h>%d <i>chunk %s<i>.";
-		if (formatMany == null) formatMany = "<h>%s<i> %s <h>%d <i>chunks near %s<i>.";
+		if (formatOne == null) formatOne = "<h>%s<i> %s <h>%d <i>чанк %s<i>.";
+		if (formatMany == null) formatMany = "<h>%s<i> %s <h>%d <i>чанки рядом %s<i>.";
 
 		if (newFaction == null) throw new NullPointerException("newFaction");
 
@@ -802,7 +802,7 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 		}
 		if (chunks.isEmpty())
 		{
-			msg("%s<i> already owns this land.", newFaction.describeTo(this, true));
+			msg("%s<i> уже владеет этой землей.", newFaction.describeTo(this, true));
 			return true;
 		}
 
@@ -812,11 +812,9 @@ public class MPlayer extends SenderEntity<MPlayer> implements FactionsParticipat
 		CommandSender sender = this.getSender();
 		if (sender == null)
 		{
-			msg("<b>ERROR: Your \"CommandSender Link\" has been severed.");
-			msg("<b>It's likely that you are using Cauldron.");
-			msg("<b>We do currently not support Cauldron.");
-			msg("<b>We would love to but lack time to develop support ourselves.");
-			msg("<g>Do you know how to code? Please send us a pull request <3, sorry.");
+			msg("<b>ОШИБКА. Ваша \"ссылка на CommandSender\" разорвана");
+			msg("<b>Вероятно, вы используете котел.");
+			msg("<b>В настоящее время мы не поддерживаем Котел.");
 			return false;
 		}
 		EventFactionsChunksChange event = new EventFactionsChunksChange(sender, chunks, newFaction);

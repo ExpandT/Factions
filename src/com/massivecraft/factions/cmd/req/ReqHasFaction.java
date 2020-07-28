@@ -38,7 +38,7 @@ public class ReqHasFaction extends RequirementAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		return Txt.parse("<b>You must belong to a faction to %s.", getDesc(command));
+		return Txt.parse("<b>Вы должны принадлежать к фракции %s.", getDesc(command));
 	}
 	
 }

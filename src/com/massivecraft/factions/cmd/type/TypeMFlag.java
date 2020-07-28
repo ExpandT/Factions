@@ -26,7 +26,7 @@ public class TypeMFlag extends TypeEntity<MFlag>
 	@Override
 	public String getName()
 	{
-		return "faction flag";
+		return "флаги фракции";
 	}
 
 	@Override

@@ -294,12 +294,12 @@ public class MPerm extends Entity<MPerm> implements Prioritized, Registerable, N
 		if (mplayer == null) throw new NullPointerException("mplayer");
 		if (hostFaction == null) throw new NullPointerException("hostFaction");
 		
-		String ret = Txt.parse("%s<b> does not allow you to %s<b>.", hostFaction.describeTo(mplayer, true), this.getDesc());
+		String ret = Txt.parse("%s<b> не позволяет вам %s<b>.", hostFaction.describeTo(mplayer, true), this.getDesc());
 		
 		Player player = mplayer.getPlayer();
 		if (player != null && Perm.OVERRIDE.has(player))
 		{
-			ret += Txt.parse("\n<i>You can bypass by using " + CmdFactions.get().cmdFactionsOverride.getTemplate(false).toPlain(true));
+			ret += Txt.parse("\n<i>Вы можете обойти с помощью " + CmdFactions.get().cmdFactionsOverride.getTemplate(false).toPlain(true));
 		}
 		
 		return ret;
@@ -419,11 +419,11 @@ public class MPerm extends Entity<MPerm> implements Prioritized, Registerable, N
 		{
 			if (value.contains(rel))
 			{
-				ret += "<g>YES";
+				ret += "<g>Да";
 			}
 			else
 			{
-				ret += "<b>NOO";
+				ret += "<b>Нет";
 			}
 			ret += " ";
 		}

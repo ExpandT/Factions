@@ -20,7 +20,7 @@ public class ComparatorMPlayerInactivity extends ComparatorAbstract<MPlayer> imp
 	@Override
 	public String getName()
 	{
-		return "Time";
+		return "Время";
 	}
 	
 	@Override

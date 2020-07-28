@@ -97,7 +97,7 @@ public class EngineWorldGuard extends Engine
 				if (player.hasPermission("factions.allowregionclaim." + region.getId())) continue;
 				
 				// No permission, notify player and stop claiming
-				mplayer.msg("<b>You cannot claim the chunk at %s, %s as there is a region in the way.", chunk.getChunkX(), chunk.getChunkZ());
+				mplayer.msg("<b>Вы не можете претендовать на чанк в %s, %s как есть регион на пути.", chunk.getChunkX(), chunk.getChunkZ());
 				
 				event.setCancelled(true);
 				return;

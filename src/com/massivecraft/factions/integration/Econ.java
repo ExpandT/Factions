@@ -117,13 +117,13 @@ public class Econ
 		// Check Permissions
 		if ( ! isMePermittedYou(by, from, MPerm.getPermWithdraw()))
 		{
-			by.msg("<h>%s<i> lack permission to withdraw money from <h>%s<i>.", by.describeTo(by, true), from.describeTo(by));
+			by.msg("<h>%s<i> отсутствие разрешения на снятие денег с <h>%s<i>.", by.describeTo(by, true), from.describeTo(by));
 			return false;
 		}
 		
 		if ( ! isMePermittedYou(by, to, MPerm.getPermDeposit()))
 		{
-			by.msg("<h>%s<i> lack permission to deposit money to <h>%s<i>.", by.describeTo(by, true), to.describeTo(by));
+			by.msg("<h>%s<i> отсутствие разрешения на внесение денег на <h>%s<i>.", by.describeTo(by, true), to.describeTo(by));
 			return false;
 		}
 		
@@ -133,7 +133,7 @@ public class Econ
 			// There was not enough money to pay
 			if (by != null && notify)
 			{
-				by.msg("<h>%s<b> can't afford to transfer <h>%s<b> to %s<b>.", from.describeTo(by, true), Money.format(amount), to.describeTo(by));
+				by.msg("<h>%s<b> не могу позволить себе перевод <h>%s<b> для %s<b>.", from.describeTo(by, true), Money.format(amount), to.describeTo(by));
 			}
 			return false;
 		}
@@ -152,7 +152,7 @@ public class Econ
 			// if we get here something with the transaction failed
 			if (by != null && notify)
 			{
-				by.msg("Unable to transfer %s<b> to <h>%s<b> from <h>%s<b>.", Money.format(amount), to.describeTo(by), from.describeTo(by, true));
+				by.msg("Невозможно передать %s<b> для <h>%s<b> из <h>%s<b>.", Money.format(amount), to.describeTo(by), from.describeTo(by, true));
 			}
 			return false;
 		}
@@ -189,28 +189,28 @@ public class Econ
 		{
 			for (MPlayer recipient : recipients)
 			{
-				recipient.msg("<h>%s<i> was transfered from <h>%s<i> to <h>%s<i>.", Money.format(amount), from.describeTo(recipient), to.describeTo(recipient));
+				recipient.msg("<h>%s<i> был передан из <h>%s<i> в <h>%s<i>.", Money.format(amount), from.describeTo(recipient), to.describeTo(recipient));
 			}
 		}
 		else if (invoker == from)
 		{
 			for (MPlayer recipient : recipients)
 			{
-				recipient.msg("<h>%s<i> <h>gave %s<i> to <h>%s<i>.", from.describeTo(recipient, true), Money.format(amount), to.describeTo(recipient));
+				recipient.msg("<h>%s<i> <h>выдал %s<i> в <h>%s<i>.", from.describeTo(recipient, true), Money.format(amount), to.describeTo(recipient));
 			}
 		}
 		else if (invoker == to)
 		{
 			for (MPlayer recipient : recipients)
 			{
-				recipient.msg("<h>%s<i> <h>took %s<i> from <h>%s<i>.", to.describeTo(recipient, true), Money.format(amount), from.describeTo(recipient));
+				recipient.msg("<h>%s<i> <h>переданы %s<i> из <h>%s<i>.", to.describeTo(recipient, true), Money.format(amount), from.describeTo(recipient));
 			}
 		}
 		else
 		{
 			for (MPlayer recipient : recipients)
 			{
-				recipient.msg("<h>%s<i> transfered <h>%s<i> from <h>%s<i> to <h>%s<i>.", invoker.describeTo(recipient, true), Money.format(amount), from.describeTo(recipient), to.describeTo(recipient));
+				recipient.msg("<h>%s<i> переведены <h>%s<i> из <h>%s<i> в <h>%s<i>.", invoker.describeTo(recipient, true), Money.format(amount), from.describeTo(recipient), to.describeTo(recipient));
 			}
 		}
 	}
@@ -223,7 +223,7 @@ public class Econ
 		{
 			if (toDoThis != null && !toDoThis.isEmpty())
 			{
-				ep.msg("<h>%s<i> can't afford <h>%s<i> %s.", ep.describeTo(ep, true), Money.format(delta), toDoThis);
+				ep.msg("<h>%s<i> не могу себе позволить <h>%s<i> %s.", ep.describeTo(ep, true), Money.format(delta), toDoThis);
 			}
 			return false;
 		}
@@ -248,11 +248,11 @@ public class Econ
 			{
 				if (delta > 0)
 				{
-					ep.msg("<h>%s<i> gained <h>%s<i> since %s did %s.", You, Money.format(delta), you, actionDescription);
+					ep.msg("<h>%s<i> получили <h>%s<i> поскольку %s сделал %s.", You, Money.format(delta), you, actionDescription);
 				}
 				else
 				{
-					ep.msg("<h>%s<i> lost <h>%s<i> since %s did %s.", You, Money.format(-delta), you, actionDescription);
+					ep.msg("<h>%s<i> потерянный <h>%s<i> поскольку %s сделал %s.", You, Money.format(-delta), you, actionDescription);
 				}
 			}
 			return true;
@@ -263,11 +263,11 @@ public class Econ
 			{
 				if (delta > 0)
 				{
-					ep.msg("<h>%s<i> would have gained <h>%s<i> since %s did %s, but the deposit failed.", You, Money.format(delta), you, actionDescription);
+					ep.msg("<h>%s<i> получил бы <h>%s<i> поскольку %s сделал %s, но депозит не удался.", You, Money.format(delta), you, actionDescription);
 				}
 				else
 				{
-					ep.msg("<h>%s<i> can't afford <h>%s<i> to %s.", You, Money.format(-delta), actionDescription);
+					ep.msg("<h>%s<i> не могу себе позволить <h>%s<i> в %s.", You, Money.format(-delta), actionDescription);
 				}
 			}
 			return false;

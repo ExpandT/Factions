@@ -46,7 +46,7 @@ public class ReqRoleIsAtLeast extends RequirementAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		return Txt.parse("<b>You must be <h>%s <b>or higher to %s.", Txt.getNicedEnum(this.getRel()), getDesc(command));
+		return Txt.parse("<b>Ты должен быть <h>%s <b>или выше %s.", Txt.getNicedEnum(this.getRel()), getDesc(command));
 	}
 	
 }

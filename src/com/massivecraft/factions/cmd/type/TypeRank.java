@@ -60,7 +60,7 @@ public class TypeRank extends TypeEnum<Rel>
 	public TypeRank(Rel rank)
 	{
 		super(Rel.class);
-		if (rank != null && ! rank.isRank()) throw new IllegalArgumentException(rank + " is not a valid rank");
+		if (rank != null && ! rank.isRank()) throw new IllegalArgumentException(rank + " не является действительным званием");
 		this.startRank = rank;
 		
 		// Do setAll with only ranks.

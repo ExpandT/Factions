@@ -45,8 +45,8 @@ public class Faction extends Entity<Faction> implements FactionsParticipator
 	// CONSTANTS
 	// -------------------------------------------- //
 	
-	public static final transient String NODESCRIPTION = Txt.parse("<em><silver>no description set");
-	public static final transient String NOMOTD = Txt.parse("<em><silver>no message of the day set");
+	public static final transient String NODESCRIPTION = Txt.parse("<em><silver>описание не задано");
+	public static final transient String NOMOTD = Txt.parse("<em><silver>нет сообщения дня установлен");
 	
 	// -------------------------------------------- //
 	// META
@@ -314,7 +314,7 @@ public class Faction extends Entity<Faction> implements FactionsParticipator
 		List<Object> ret = new MassiveList<>();
 		
 		// Fill
-		Object title = this.getName() + " - Message of the Day";
+		Object title = this.getName() + " - Сообщения дня";
 		title = Txt.titleize(title);
 		ret.add(title);
 		
@@ -376,7 +376,7 @@ public class Faction extends Entity<Faction> implements FactionsParticipator
 		if (this.isValidHome(this.home)) return;
 		this.home = null;
 		this.changed();
-		msg("<b>Your faction home has been un-set since it is no longer in your territory.");
+		msg("<b>Дом вашей фракции не был установлен, поскольку он больше не находится на вашей территории.");
 	}
 	
 	public boolean isValidHome(PS ps)
@@ -1088,12 +1088,12 @@ public class Faction extends Entity<Faction> implements FactionsParticipator
 			// no members left and faction isn't permanent, so disband it
 			if (MConf.get().logFactionDisband)
 			{
-				Factions.get().log("The faction "+this.getName()+" ("+this.getId()+") has been disbanded since it has no members left.");
+				Factions.get().log("Фракция "+this.getName()+" ("+this.getId()+") был расформирован, так как у него не осталось членов.");
 			}
 
 			for (MPlayer mplayer : MPlayerColl.get().getAllOnline())
 			{
-				mplayer.msg("<i>The faction %s<i> was disbanded.", this.getName(mplayer));
+				mplayer.msg("<i>Фракция %s<i> была расформирована.", this.getName(mplayer));
 			}
 
 			this.detach();
@@ -1107,8 +1107,8 @@ public class Faction extends Entity<Faction> implements FactionsParticipator
 			}
 				
 			replacements.get(0).setRole(Rel.LEADER);
-			this.msg("<i>Faction leader <h>%s<i> has been removed. %s<i> has been promoted as the new faction leader.", oldLeader == null ? "" : oldLeader.getName(), replacements.get(0).getName());
-			Factions.get().log("Faction "+this.getName()+" ("+this.getId()+") leader was removed. Replacement leader: "+replacements.get(0).getName());
+			this.msg("<i>Лидер фракции <h>%s<i> был удален. %s<i> был назначен новым лидером фракции.", oldLeader == null ? "" : oldLeader.getName(), replacements.get(0).getName());
+			Factions.get().log("Фракция "+ this.getName()+" ("+this.getId()+") Лидер был удален. Замена лидера: "+replacements.get(0).getName());
 		}
 	}
 	

@@ -85,7 +85,7 @@ public class EngineChunkChange extends Engine
 				if ( ! MConf.get().worldsClaimingEnabled.contains(worldId))
 				{
 					String worldName = MixinWorld.get().getWorldDisplayName(worldId);
-					mplayer.msg("<b>Land claiming is disabled in <h>%s<b>.", worldName);
+					mplayer.msg("<b>Претензия на землю отключена в <h>%s<b>.", worldName);
 					event.setCancelled(true);
 					return;
 				}
@@ -102,7 +102,7 @@ public class EngineChunkChange extends Engine
 			// ... ensure the new faction has enough players to claim ...
 			if (newFaction.getMPlayers().size() < MConf.get().claimsRequireMinFactionMembers)
 			{
-				mplayer.msg("<b>Factions must have at least <h>%s<b> members to claim land.", MConf.get().claimsRequireMinFactionMembers);
+				mplayer.msg("<b>Фракции должны иметь как минимум <h>%s<b> игроков для захвата территории.", MConf.get().claimsRequireMinFactionMembers);
 				event.setCancelled(true);
 				return;
 			}
@@ -113,7 +113,7 @@ public class EngineChunkChange extends Engine
 				// ... ensure the claim would not bypass the global max limit ...
 				if (MConf.get().claimedLandsMax != 0 && claimedLandCount + chunks.size() > MConf.get().claimedLandsMax)
 				{
-					mplayer.msg("<b>Limit reached. You can't claim more land.");
+					mplayer.msg("<b>Достигнуто ограничение. Вы не можете требовать больше земли.");
 					event.setCancelled(true);
 					return;
 				}
@@ -138,10 +138,10 @@ public class EngineChunkChange extends Engine
 
 						String worldsMax = MConf.get().claimedWorldsMax == 1 ? "world" : "worlds";
 						String worldsAlready = oldWorlds.size() == 1 ? "world" : "worlds";
-						mplayer.msg("<b>A faction may only be present on <h>%d<b> different %s.", MConf.get().claimedWorldsMax, worldsMax);
-						mplayer.msg("%s<i> is already present on <h>%d<i> %s:", newFaction.describeTo(mplayer), oldWorlds.size(), worldsAlready);
+						mplayer.msg("<b>Фракция может присутствовать только на <h>%d<b> разные %s.", MConf.get().claimedWorldsMax, worldsMax);
+						mplayer.msg("%s<i> уже присутствует на <h>%d<i> %s:", newFaction.describeTo(mplayer), oldWorlds.size(), worldsAlready);
 						mplayer.message(Txt.implodeCommaAndDot(worldNames, ChatColor.YELLOW.toString()));
-						mplayer.msg("<i>Please unclaim bases on other worlds to claim here.");
+						mplayer.msg("<i>Пожалуйста, откройте базы в других мирах, чтобы претендовать здесь.");
 
 						event.setCancelled(true);
 						return;
@@ -153,7 +153,7 @@ public class EngineChunkChange extends Engine
 			// ... ensure the claim would not bypass the faction power ...
 			if (claimedLandCount + chunks.size() > newFaction.getPowerRounded())
 			{
-				mplayer.msg("<b>You don't have enough power to claim that land.");
+				mplayer.msg("<b>У вас недостаточно сил, чтобы претендовать на эту землю.");
 				event.setCancelled(true);
 				return;
 			}
@@ -194,11 +194,11 @@ public class EngineChunkChange extends Engine
 			{
 				if (MConf.get().claimsCanBeUnconnectedIfOwnedByOtherFaction)
 				{
-					mplayer.msg("<b>You can only claim additional land which is connected to your first claim or controlled by another faction!");
+					mplayer.msg("<b>Вы можете требовать только дополнительную землю, которая связана с вашей первой территорией или контролируется другой фракцией!");
 				}
 				else
 				{
-					mplayer.msg("<b>You can only claim additional land which is connected to your first claim!");
+					mplayer.msg("<b>Вы можете требовать только дополнительную землю, которая связана с вашей первой претензией!");
 				}
 				event.setCancelled(true);
 				return;
@@ -222,7 +222,7 @@ public class EngineChunkChange extends Engine
 			// ... claiming from others may be forbidden ...
 			if ( ! MConf.get().claimingFromOthersAllowed)
 			{
-				mplayer.msg("<b>You may not claim land from others.");
+				mplayer.msg("<b>Вы не можете претендовать на землю от других.");
 				event.setCancelled(true);
 				return;
 			}
@@ -230,7 +230,7 @@ public class EngineChunkChange extends Engine
 			// ... the relation may forbid ...
 			if (oldFaction.getRelationTo(newFaction).isAtLeast(Rel.TRUCE))
 			{
-				mplayer.msg("<b>You can't claim this land due to your relation with the current owner.");
+				mplayer.msg("<b>Вы не можете претендовать на эту землю из-за ваших отношений с текущим владельцем.");
 				event.setCancelled(true);
 				return;
 			}
@@ -238,7 +238,7 @@ public class EngineChunkChange extends Engine
 			// ... the old faction might not be inflated enough ...
 			if (oldFaction.getPowerRounded() > oldFaction.getLandCount() - oldChunks.size())
 			{
-				mplayer.msg("%s<i> owns this land and is strong enough to keep it.", oldFaction.getName(mplayer));
+				mplayer.msg("%s<i> владеет этой землей и достаточно силен, чтобы сохранить ее.", oldFaction.getName(mplayer));
 				event.setCancelled(true);
 				return;
 			}
@@ -246,7 +246,7 @@ public class EngineChunkChange extends Engine
 			// ... and you might be trying to claim without starting at the border ...
 			if ( ! BoardColl.get().isAnyBorderPs(chunks))
 			{
-				mplayer.msg("<b>You must start claiming land at the border of the territory.");
+				mplayer.msg("<b>Вы должны начать претендовать на землю на границе территории.");
 				event.setCancelled(true);
 				return;
 			}

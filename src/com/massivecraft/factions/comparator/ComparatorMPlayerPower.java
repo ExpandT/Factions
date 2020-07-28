@@ -20,7 +20,7 @@ public class ComparatorMPlayerPower extends ComparatorAbstract<MPlayer> implemen
 	@Override
 	public String getName()
 	{
-		return "Power";
+		return "Сила";
 	}
 	
 	@Override

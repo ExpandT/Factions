@@ -21,7 +21,7 @@ public class ComparatorMPlayerRole extends ComparatorAbstract<MPlayer> implement
 	@Override
 	public String getName()
 	{
-		return "Rank";
+		return "Ранг";
 	}
 	
 	@Override

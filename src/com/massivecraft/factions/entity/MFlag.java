@@ -264,8 +264,8 @@ public class MFlag extends Entity<MFlag> implements Prioritized, Registerable, N
 	
 	private static String getStateValue(boolean value, boolean monoSpace)
 	{
-		String yes = "<g>YES";
-		String no = monoSpace ? "<b>NOO" : "<b>NO";
+		String yes = "<g>Да";
+		String no = monoSpace ? "<b>Нет" : "<b>Нет";
 		
 		return Txt.parse(value ? yes : no);
 	}

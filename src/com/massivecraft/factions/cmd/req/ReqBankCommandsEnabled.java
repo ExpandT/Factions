@@ -35,8 +35,8 @@ public class ReqBankCommandsEnabled extends RequirementAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		String what = !MConf.get().bankEnabled ? "banks" : "economy features";
-		return Txt.parse("<b>Faction %s are disabled.", what);
+		String what = !MConf.get().bankEnabled ? "банк" : "особенности экономики";
+		return Txt.parse("<b>Фракция %s отключены.", what);
 	}
 	
 }

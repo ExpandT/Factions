@@ -34,7 +34,7 @@ public class ReqFactionHomesEnabled extends RequirementAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		return Txt.parse("<b>Homes must be enabled on the server to %s.", getDesc(command));
+		return Txt.parse("<b>Дома должны быть включены на сервере, чтобы %s.", getDesc(command));
 	}
 	
 }

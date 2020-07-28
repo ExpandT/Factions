@@ -26,7 +26,7 @@ public class TypeMPerm extends TypeEntity<MPerm>
 	@Override
 	public String getName()
 	{
-		return "faction permission";
+		return "пермишен фракции";
 	}
 
 	@Override

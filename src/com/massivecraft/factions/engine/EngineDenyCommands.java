@@ -50,7 +50,7 @@ public class EngineDenyCommands extends Engine
 		// ... the command may be denied for members of permanent factions ...
 		if (mplayer.hasFaction() && mplayer.getFaction().getFlag(MFlag.getFlagPermanent()) && MUtil.containsCommand(command, MConf.get().denyCommandsPermanentFactionMember))
 		{
-			mplayer.msg("<b>You can't use \"<h>/%s<b>\" as member of a permanent faction.", command);
+			mplayer.msg("<b>Вы не можете использовать \"<h>/%s<b>\" как член постоянной фракции.", command);
 			event.setCancelled(true);
 			return;
 		}
@@ -81,7 +81,7 @@ public class EngineDenyCommands extends Engine
 				
 				String desc = playerRel.getDescPlayerOne();
 				
-				mplayer.msg("<b>You can't use \"<h>/%s<b>\" as there is <h>%s<b> nearby.", command, desc);
+				mplayer.msg("<b>Вы не можете использовать \"<h>/%s<b>\" как есть <h>%s<b> рядом, поблизости.", command, desc);
 				event.setCancelled(true);
 				return;
 			}
@@ -94,7 +94,7 @@ public class EngineDenyCommands extends Engine
 		if (deniedCommands == null) return;
 		if ( ! MUtil.containsCommand(command, deniedCommands)) return;
 		
-		mplayer.msg("<b>You can't use \"<h>/%s<b>\" in %s territory.", command, Txt.getNicedEnum(factionAtRel));
+			mplayer.msg("<b>Вы не можете использовать \"<h>/%s<b>\" в %s территории.", command, Txt.getNicedEnum(factionAtRel));
 		event.setCancelled(true);
 	}
 	
